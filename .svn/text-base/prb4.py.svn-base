@@ -1,0 +1,57 @@
+from visual import *
+from random import *
+from time import *
+
+################### Function definitions
+
+## Detects collisions betweens a list of spheres of radius 1
+## and a single sphere of radius 1. If no overlap, returns 1.
+## If there is an overlap, returns 0.
+def nocollision(spherelist, currsphere):
+    for s in spherelist:
+        if mag(s.pos-currsphere.pos) <= 2:
+            return 0
+    return 1
+
+## Pick a random direction vector
+def randomdirection():
+    d = vector(1,1,1)
+    while mag(d) > 1:
+        d = 2.0 * vector(random()-0.5,random()-0.5,random()-0.5)
+    return d / mag(d)
+
+################### Program start
+
+scene.autoscale = 0
+scene.background = (0.8,0.8,0.8)
+
+print "Diffusion limited aggregation simulation."
+print "The printed output is the mass of the aggregate and radius of sphere"
+print "centered at original sphere that contains the aggregate."
+print "(Each sphere has mass 1, so mass is just number of spheres.)"
+print ""
+
+massgoal = input("Put how many spheres in the aggregate?")
+
+## Initialize the aggregate
+aggregate = [sphere(color=color.blue)]   ## initial sphere is blue
+aggregateradius = 1.0
+
+while len(aggregate) < massgoal:
+    ## start a particle at the edge of sphere around aggregate
+    s = sphere(color=color.green, pos=(aggregateradius+1.)*randomdirection())
+    ## Move particle randomly until it collides with aggregate (sticks).
+    while nocollision(aggregate,s):
+        s.pos += randomdirection()
+        if mag(s.pos) > 2. * aggregateradius:  ## too far - reset
+            s.pos = (aggregateradius+1.)*randomdirection()
+    ## Now have collision!
+    aggregate.append(s)
+    s.color = color.red
+    ## Update size of aggregate, if new particle extends radius
+    if (mag(s.pos)+1) > aggregateradius:
+        aggregateradius = mag(s.pos) + 1
+    print "#", len(aggregate), "stuck; aggregate radius is", aggregateradius
+
+print ""
+print "Run finished with radius of", aggregateradius

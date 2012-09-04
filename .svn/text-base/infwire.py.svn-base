@@ -1,0 +1,522 @@
+from visual import*
+import array
+                                
+scene.range = (30,30,30)
+scene.autoscale = 0
+scene.height = 740
+scene.width = 1024
+scene.center = (-5, 10,0)
+
+
+wire = cylinder(pos=(0,-100,), axis = (0,200,0), radius = .2)
+wire.color = (1,.7,.2)
+blue =  (0,0,1)
+
+I = 1.0
+
+firstring = 3.0/I
+
+#Here's the formula explanation : add to the position, the position over the current (R/I)
+#This is the new position : secondring = firstring + (firstring/I) = I*firstring/I + firstring/I
+# = firstring * (I+1)/I
+
+secondring = firstring*(I+1)/I
+thirdring = secondring*(I+1)/I
+fourthring = thirdring*(I+1)/I
+fifthring = fourthring*(I+1)/I
+sixthring = fifthring*(I+1)/I
+seventhring = sixthring*(I+1)/I
+eighthring = seventhring*(I+1)/I
+ninthring = eighthring*(I+1)/I
+tenthring = ninthring*(I+1)/I
+eleventhring = tenthring*(I+1)/I
+twelfthring = eleventhring*(I+1)/I
+thirteenthring = twelfthring*(I+1)/I
+fourteenthring = thirteenthring*(I+1)/I
+fifteenthring = fourteenthring*(I+1)/I
+sixteenthring = fifteenthring*(I+1)/I
+
+#Specs for rings, spheres and arrows
+arrowsize = 1.50
+halfarrowsize = arrowsize / 2
+arrowwidth = 10
+ringcolor = (0,5,0)
+rad = .4
+
+b1 = sphere()
+b2 = sphere()
+b3 = sphere()
+b4 = sphere()
+b5 = sphere()
+b6 = sphere()
+b7 = sphere()
+b8 = sphere()
+b9 = sphere()
+b10 = sphere()
+b11 = sphere()
+b12 = sphere()
+b13 = sphere()
+b14 = sphere()
+b15 = sphere()
+b16 = sphere()
+b17 = sphere()
+b18 = sphere()
+b19 = sphere()
+b20 = sphere()
+b21 = sphere()
+b22 = sphere()
+b23 = sphere()
+b24 = sphere()
+b25 = sphere()
+b26 = sphere()
+b27 = sphere()
+b28 = sphere()
+b29 = sphere()
+b30 = sphere()
+b31 = sphere()
+b32 = sphere()
+b33 = sphere()
+b34 = sphere()
+b35 = sphere()
+b36 = sphere()
+b37 = sphere()
+b38 = sphere()
+b39 = sphere()
+b40 = sphere()
+b41 = sphere()
+b42 = sphere()
+b43 = sphere()
+b44 = sphere()
+b45 = sphere()
+b46 = sphere()
+b47 = sphere()
+b48 = sphere()
+b49 = sphere()
+b50 = sphere()
+b51 = sphere()
+b52 = sphere()
+b53 = sphere()
+b54 = sphere()
+b55 = sphere()
+b56 = sphere()
+b57 = sphere()
+b58 = sphere()
+b59 = sphere()
+b60 = sphere()
+b61 = sphere()
+b62 = sphere()
+b63 = sphere()
+b64 = sphere()
+b65 = sphere()
+b66 = sphere()
+b67 = sphere()
+b68 = sphere()
+b69 = sphere()
+b70 = sphere()
+b71 = sphere()
+b72 = sphere()
+b73 = sphere()
+b74 = sphere()
+b75 = sphere()
+b76 = sphere()
+b77 = sphere()
+b78 = sphere()
+b79 = sphere()
+b80 = sphere()
+b81 = sphere()
+b82 = sphere()
+b83 = sphere()
+b84 = sphere()
+b85 = sphere()
+b86 = sphere()
+b87 = sphere()
+b88 = sphere()
+b89 = sphere()
+b90 = sphere()
+b91 = sphere()
+b92 = sphere()
+b93 = sphere()
+b94 = sphere()
+b95 = sphere()
+b96 = sphere()
+b97 = sphere()
+b98 = sphere()
+b99 = sphere()
+b100 = sphere()
+b101 = sphere()
+
+spheres = [b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,
+     b33,b34,b35,b36,b37,b38,b39,b40,b41,b42,b43,b44,b45,b46,b47,b48,b49,b50,b51,b52,b53,b54,b55,b56,b57,b58,b59,b60,b61,b62,
+     b63,b64,b65,b66,b67,b68,b69,b70,b71,b72,b73,b74,b75,b76,b77,b78,b79,b80,b81,b82,b83,b84,b85,b86,b87,b88,b89,b90,b91,b92,
+     b93,b94,b95,b96,b97,b98,b99,b100,b101]
+
+k = -100
+for b in spheres :
+    b.pos = (0,k,0)
+    b.radius = rad
+    b.color = blue
+    k = k + 2
+
+marrow1a = arrow(pos = (-firstring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow1b = arrow(pos = (0,0,firstring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow1c = arrow(pos = (firstring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow1d = arrow(pos = (0,0,-firstring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow2a = arrow(pos = (-secondring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow2b = arrow(pos = (0,0,secondring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow2c = arrow(pos = (secondring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow2d = arrow(pos = (0,0,-secondring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow3a = arrow(pos = (-thirdring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow3b = arrow(pos = (0,0,thirdring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow3c = arrow(pos = (thirdring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow3d = arrow(pos = (0,0,-thirdring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow4a = arrow(pos = (-fourthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow4b = arrow(pos = (0,0,fourthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow4c = arrow(pos = (fourthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow4d = arrow(pos = (0,0,-fourthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow5a = arrow(pos = (-fifthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow5b = arrow(pos = (0,0,fifthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow5c = arrow(pos = (fifthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow5d = arrow(pos = (0,0,-fifthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow6a = arrow(pos = (-sixthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow6b = arrow(pos = (0,0,sixthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow6c = arrow(pos = (sixthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow6d = arrow(pos = (0,0,-sixthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow7a = arrow(pos = (-seventhring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow7b = arrow(pos = (0,0,seventhring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow7c = arrow(pos = (seventhring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow7d = arrow(pos = (0,0,-seventhring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow8a = arrow(pos = (-eighthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow8b = arrow(pos = (0,0,eighthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow8c = arrow(pos = (eighthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow8d = arrow(pos = (0,0,-eighthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow9a = arrow(pos = (-ninthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow9b = arrow(pos = (0,0,ninthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow9c = arrow(pos = (ninthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow9d = arrow(pos = (0,0,-ninthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow10a = arrow(pos = (-tenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow10b = arrow(pos = (0,0,tenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow10c = arrow(pos = (tenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow10d = arrow(pos = (0,0,-tenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow11a = arrow(pos = (-eleventhring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow11b = arrow(pos = (0,0,eleventhring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow11c = arrow(pos = (eleventhring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow11d = arrow(pos = (0,0,-eleventhring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow12a = arrow(pos = (-twelfthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow12b = arrow(pos = (0,0,twelfthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow12c = arrow(pos = (twelfthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow12d = arrow(pos = (0,0,-twelfthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow13a = arrow(pos = (-thirteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow13b = arrow(pos = (0,0,thirteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow13c = arrow(pos = (thirteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow13d = arrow(pos = (0,0,-thirteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow14a = arrow(pos = (-fourteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow14b = arrow(pos = (0,0,fourteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow14c = arrow(pos = (fourteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow14d = arrow(pos = (0,0,-fourteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow15a = arrow(pos = (-fifteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow15b = arrow(pos = (0,0,fifteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow15c = arrow(pos = (fifteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow15d = arrow(pos = (0,0,-fifteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow16a = arrow(pos = (-sixteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow16b = arrow(pos = (0,0,sixteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow16c = arrow(pos = (sixteenthring,0,0), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+marrow16d = arrow(pos = (0,0,-sixteenthring), axis = (0,0,arrowsize), shaftwidth = arrowwidth, color = ringcolor)
+
+as = [marrow1a, marrow2a, marrow3a, marrow4a, marrow5a, marrow6a, marrow7a, marrow8a, marrow9a, marrow10a, marrow11a,   marrow12a, marrow13a, marrow14a,marrow15a, marrow16a]
+bs = [marrow1b, marrow2b, marrow3b, marrow4b, marrow5b, marrow6b, marrow7b, marrow8b, marrow9b, marrow10b, marrow11b,      marrow12b, marrow13b, marrow14b,marrow15b, marrow16b]
+cs = [marrow1c, marrow2c, marrow3c, marrow4c, marrow5c, marrow6c, marrow7c, marrow8c, marrow9c, marrow10c, marrow11c,     marrow12c, marrow13c, marrow14c,marrow15c, marrow16c]
+ds = [marrow1d, marrow2d, marrow3d, marrow4d, marrow5d, marrow6d, marrow7d, marrow8d, marrow9d, marrow10d, marrow11d,      marrow12d, marrow13d, marrow14d,marrow15d, marrow16d]
+arr1 = [marrow1a, marrow1b, marrow1c, marrow1d]
+arr2 = [marrow2a, marrow2b, marrow2c, marrow2d]
+arr3 = [marrow3a, marrow3b, marrow3c, marrow3d]
+arr4 = [marrow4a, marrow4b, marrow4c, marrow4d]
+arr5 = [marrow5a, marrow5b, marrow5c, marrow5d]
+arr6 = [marrow6a, marrow6b, marrow6c, marrow6d]
+arr7 = [marrow7a, marrow7b, marrow7c, marrow7d]
+arr8 = [marrow8a, marrow8b, marrow8c, marrow8d]
+arr9 = [marrow9a, marrow9b, marrow9c, marrow9d]
+arr10 = [marrow10a, marrow10b, marrow10c, marrow10d]
+arr11 = [marrow11a, marrow11b, marrow11c, marrow11d]
+arr12 = [marrow12a, marrow12b, marrow12c, marrow12d]
+arr13 = [marrow13a, marrow13b, marrow13c, marrow13d]
+arr14 = [marrow14a, marrow14b, marrow14c, marrow14d]
+arr15 = [marrow15a, marrow15b, marrow15c, marrow15d]
+arr16 = [marrow16a, marrow16b, marrow16c, marrow16d]
+
+t = arange(0, 10, 0.1)
+mfield1 = curve(x = -firstring*cos(t), z = firstring*sin(t),radius = rad/3, color = ringcolor)
+mfield2 = curve(x = -secondring*cos(t), z = secondring*sin(t),radius = rad/3, color = ringcolor)
+mfield3 = curve(x = -thirdring*cos(t), z = thirdring*sin(t),radius = rad/3, color = ringcolor)
+mfield4 = curve(x = -fourthring*cos(t), z = fourthring*sin(t),radius = rad/3, color = ringcolor)
+mfield5 = curve(x = -fifthring*cos(t), z = fifthring*sin(t),radius = rad/3, color = ringcolor)
+mfield6 = curve(x = -sixthring*cos(t), z = sixthring*sin(t),radius = rad/3, color = ringcolor)
+mfield7 = curve(x = -seventhring*cos(t), z = seventhring*sin(t),radius = rad/3, color = ringcolor)
+mfield8 = curve(x = -eighthring*cos(t), z = eighthring*sin(t),radius = rad/3, color = ringcolor)
+mfield9 = curve(x = -ninthring*cos(t), z = ninthring*sin(t),radius = rad/3, color = ringcolor)
+mfield10 = curve(x = -tenthring*cos(t), z = tenthring*sin(t),radius = rad/3, color = ringcolor)
+mfield11 = curve(x = -eleventhring*cos(t), z = eleventhring*sin(t),radius = rad/3, color = ringcolor)
+mfield12 = curve(x = -twelfthring*cos(t), z = twelfthring*sin(t),radius = rad/3, color = ringcolor)
+mfield13 = curve(x = -thirteenthring*cos(t), z = thirteenthring*sin(t),radius = rad/3, color = ringcolor)
+mfield14 = curve(x = -fourteenthring*cos(t), z = fourteenthring*sin(t),radius = rad/3, color = ringcolor)
+mfield15 = curve(x = -fifteenthring*cos(t), z = fifteenthring*sin(t),radius = rad/3, color = ringcolor)
+mfield16 = curve(x = -sixteenthring*cos(t), z = sixteenthring*sin(t),radius = rad/3, color = ringcolor)
+
+mfcounter = 1
+stepcount = 0
+switchrate = 120.0
+getclick =1
+radialunit = 540
+
+
+
+grey = (0.85, 0.85, 0.85)
+
+class slider:
+    def __init__(self, pos=vector(0,0,0), axis=vector(0,10.,0), value=None,
+                 width=.7, min=0, max=5., color=(10,0,0)):
+        pos = vector(pos)
+        axis = vector(axis)
+        if value == None:
+            value = min
+        self.min = min
+        self.max = max
+        self.value = value
+        self.shaft = cylinder(pos=pos, axis=axis, radius=width/4., color=grey)
+        self.start = pos
+        self.axis = axis
+        self.control = sphere(pos=self.start+(self.min+value)/(self.max-self.min)*self.axis,
+                        radius=width, color = color)
+        self.control.label = "  Current = %0.2f" % value
+
+    def getslider(self, pos=None):
+        if pos == None:
+            pos = self.start
+        pos = vector(pos)
+        pos = pos - self.start
+        value = .0095*(self.min+(self.max-self.min))*dot(pos, self.axis)
+        self.setslider(value)
+        return value
+
+    def setslider(self, value=None):
+        if value > self.max:
+            value = self.max
+        if value < self.min:
+            value = self.min
+        self.value = value
+        self.control.pos = self.start+(self.min+value)/(self.max-self.min)*self.axis
+        self.control.label = "  Current = %0.2f" % value
+
+
+wcube = 0.2
+I = 1.0
+newI = I
+ctrl = [slider(pos=(-10,10,0), color=(1,0,0), max=4.,value=I)]
+while 1:
+    if scene.mouse.clicked:
+        m = scene.mouse.getclick()
+        for index in range(1):
+            s = ctrl[index]
+            if m.pick is s.control:
+                pos = m.project(normal=(0,0,1))
+                while 1:
+                    if scene.mouse.clicked:
+                        scene.mouse.getclick() # swallow terminating click
+                        newI = s.value
+                        inc = newI - I
+                        newcalc = 1
+                        break
+                    elif scene.mouse.project(normal=(0,0,1)) <> pos:
+                        pos = scene.mouse.project(normal=(0,0,1))
+                        s.getslider(pos)
+
+    if newI == 0:
+        newI = .0001
+    for a in arr1:
+        a.location = firstring
+    for a in arr2:
+        a.location = secondring
+    for a in arr3:
+        a.location = thirdring
+    for a in arr4:
+        a.location = fourthring
+    for a in arr5:
+        a.location = fifthring
+    for a in arr6:
+        a.location = sixthring
+    for a in arr7:
+        a.location = seventhring
+    for a in arr8:
+        a.location = eighthring
+    for a in arr9:
+        a.location = ninthring
+    for a in arr10:
+        a.location = tenthring
+    for a in arr11:
+        a.location = eleventhring
+    for a in arr12:
+        a.location = twelfthring
+    for a in arr13:
+        a.location = thirteenthring
+    for a in arr14:
+        a.location = fourteenthring
+    for a in arr15:
+        a.location = fifteenthring
+    for a in arr16:
+        a.location = sixteenthring
+        
+    for m in as:
+        m.pos.x = (-m.location*cos((mfcounter)*pi/radialunit)-(halfarrowsize*sin((mfcounter)*pi/radialunit)))
+        m.pos.z = (m.location*sin((mfcounter)*pi/radialunit)-(halfarrowsize*cos((mfcounter)*pi/radialunit)))
+        m.axis.x = (arrowsize*sin((mfcounter)*pi/radialunit))
+        m.axis.z = (arrowsize*cos((mfcounter)*pi/radialunit))
+    for m in bs:
+        m.pos.x = (m.location*sin((mfcounter)*pi/radialunit)-(halfarrowsize*cos((mfcounter)*pi/radialunit)))
+        m.pos.z = (m.location*cos((mfcounter)*pi/radialunit)+(halfarrowsize*sin((mfcounter)*pi/radialunit)))
+        m.axis.x = (arrowsize*cos((mfcounter)*pi/radialunit))
+        m.axis.z = (-arrowsize*sin((mfcounter)*pi/radialunit))
+    for m in cs:
+        m.pos.x = (m.location*cos((mfcounter)*pi/radialunit)+(halfarrowsize*sin((mfcounter)*pi/radialunit)))
+        m.pos.z = (-m.location*sin((mfcounter)*pi/radialunit)+(halfarrowsize*cos((mfcounter)*pi/radialunit)))
+        m.axis.x = (-arrowsize*sin((mfcounter)*pi/radialunit))
+        m.axis.z = (-arrowsize*cos((mfcounter)*pi/radialunit))
+    for m in ds:
+        m.pos.x = (-m.location*sin((mfcounter)*pi/radialunit)+(halfarrowsize*cos((mfcounter)*pi/radialunit)))
+        m.pos.z = (-m.location*cos((mfcounter)*pi/radialunit)-(halfarrowsize*sin((mfcounter)*pi/radialunit)))
+        m.axis.x = (-arrowsize*cos((mfcounter)*pi/radialunit))
+        m.axis.z = (arrowsize*sin((mfcounter)*pi/radialunit))
+             
+    if newI != I:
+        t = arange(0, 10, 0.1)
+        if newcalc == 1:
+            new1 = firstring*I/newI
+            dif1 = new1 - firstring
+            snew = new1/newI
+            new2 = new1 + snew
+            dif2 = new2 - secondring
+            snew = new2/newI
+            new3 = new2 + snew
+            dif3 = new3 - thirdring
+            snew = new3/newI
+            new4 = new3 + snew
+            dif4 = new4 - fourthring
+            snew = new4/newI
+            new5 = new4 + snew
+            dif5 = new5 - fifthring
+            snew = new5/newI
+            new6 = new5 + snew
+            dif6 = new6 - sixthring
+            snew = new6/newI
+            new7 = new6 + snew
+            dif7 = new7 - seventhring
+            snew = new7/newI
+            new8 = new7 + snew
+            dif8 = new8 - eighthring
+            snew = new7/newI
+            new9 = new8 + snew
+            dif9 = new9-ninthring
+            snew = new8/newI
+            new10 = new9 + snew
+            dif10 = new10-tenthring
+            snew = new9/newI
+            new11 = new10 + snew
+            dif11 = new11-eleventhring
+            snew = new10/newI
+            new12 = new11 + snew
+            dif12 = new12-twelfthring
+            snew = new11/newI
+            new13 = new12 + snew
+            dif13 = new13 - thirteenthring
+            snew = new12/newI
+            new14 = new13 + snew
+            dif14 = new14-fourteenthring
+            snew = new13/newI
+            new15 = new14 + snew
+            dif15 = new15 - fifteenthring
+            snew = new14/newI
+            new16 = new15 + snew
+            dif16 = new16 - sixteenthring
+            newcalc = 0
+                
+        if stepcount == 0:
+            stepcount = switchrate
+        elif stepcount > 0:
+            step1 = dif1/switchrate
+            step2 = dif2/switchrate
+            step3 = dif3/switchrate
+            step4 = dif4/switchrate
+            step5 = dif5/switchrate
+            step6 = dif6/switchrate
+            step7 = dif7/switchrate
+            step8 = dif8/switchrate
+            step9 = dif9/switchrate
+            step10 = dif10/switchrate
+            step11 = dif11/switchrate
+            step12 = dif12/switchrate
+            step13 = dif13/switchrate
+            step14 = dif14/switchrate
+            step15 = dif15/switchrate
+            step16 = dif16/switchrate
+            factor = inc/switchrate
+            firstring = firstring + step1
+            secondring = secondring  + step2
+            thirdring = thirdring + step3
+            fourthring = fourthring + step4
+            fifthring = fifthring + step5
+            sixthring = sixthring + step6
+            seventhring = seventhring + step7
+            eighthring = eighthring + step8
+            ninthring = ninthring + step9
+            tenthring = tenthring + step10
+            eleventhring = eleventhring + step11
+            twelfthring = twelfthring + step12
+            thirteenthring =thirteenthring +step13
+            fourteenthring = fourteenthring + step14
+            fifteenthring = fifteenthring + step15
+            sixteenthring = sixteenthring + step16
+            mfield1.x = -firstring*cos(t)
+            mfield1.z = firstring*sin(t)
+            mfield2.x = -secondring*cos(t)
+            mfield2.z = secondring*sin(t)
+            mfield3.x = -thirdring*cos(t)
+            mfield3.z = thirdring*sin(t)
+            mfield4.x = -fourthring*cos(t)
+            mfield4.z = fourthring*sin(t)
+            mfield5.x = -fifthring*cos(t)
+            mfield5.z = fifthring*sin(t)
+            mfield6.x = -sixthring*cos(t)
+            mfield6.z = sixthring*sin(t)
+            mfield7.x = -seventhring*cos(t)
+            mfield7.z = seventhring*sin(t)
+            mfield8.x = -eighthring*cos(t)
+            mfield8.z = eighthring*sin(t)
+            mfield9.x = -ninthring*cos(t)
+            mfield9.z = ninthring*sin(t)
+            mfield10.x = -tenthring*cos(t)
+            mfield10.z = tenthring*sin(t)
+            mfield11.x = -eleventhring*cos(t)
+            mfield11.z = eleventhring*sin(t)
+            mfield12.x = -twelfthring*cos(t)
+            mfield12.z = twelfthring*sin(t)
+            mfield13.x = -thirteenthring*cos(t)
+            mfield13.z = thirteenthring*sin(t)
+            mfield14.x = -fourteenthring*cos(t)
+            mfield14.z = fourteenthring*sin(t)
+            mfield15.x = -fifteenthring*cos(t)
+            mfield15.z = fifteenthring*sin(t)
+            mfield16.x = -sixteenthring*cos(t)
+            mfield16.z = sixteenthring*sin(t)
+            I = I + factor
+            stepcount = stepcount - 1
+            if stepcount == 0:
+                I = newI
+                
+    for m in spheres:
+        z = vector(0,I/20.0,0)
+        z = z + m.pos
+        m.pos = z
+        if m.pos.y > 100:
+            m.pos.y = -100
+    mfcounter = mfcounter + 2
+
+
+    

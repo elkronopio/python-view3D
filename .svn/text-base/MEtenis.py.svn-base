@@ -1,0 +1,69 @@
+### Monte Carlo table tennis
+
+### Assume player A wins fraction Askill of the serves,
+### similarly for B - skill values are in range [0,1]
+### Scoring: players serve twice in a row, switch initial
+### server at the end of a game. Must win by 2. When reach
+### deuce (10-10), alternate serves one at a time. 5 games
+### in a games. Here, we will have a rule change: simply
+### alternate serves.
+
+from random import *
+
+Askill = 0.9
+Bskill = 0.9
+Amatches = 0
+Bmatches = 0
+
+#start a match - A always serves first, each match
+Agames = 0
+Bgames = 0
+gameserver = "A"
+
+# loop over games in match
+for game in range(5):
+    Apoints = 0
+    Bpoints = 0
+    gamerecord = ""
+    server = gameserver
+
+    while (abs(Apoints - Bpoints) < 2 or (Apoints < 11 and Bpoints < 11)):
+        if server == "A":
+            if random() < Askill:
+                Apoints += 1
+                gamerecord += "A"
+            else:
+                Bpoints += 1
+                gamerecord += "B"
+            server = "B"
+        else:
+            if random() < Bskill:
+                Bpoints += 1
+                gamerecord += "B"
+            else:
+                Apoints += 1
+                gamerecord += "A"
+            server = "A"
+
+    print gamerecord, "Game score: A=", Apoints, "B=", Bpoints
+    if Apoints > Bpoints:
+        Agames += 1
+    else:
+        Bgames += 1
+    if gameserver == "A":
+        gameserver = "B"
+    else:
+        gameserver = "A"
+    print "Games: A=", Agames, "B=", Bgames
+    # end of loop over games in a match
+
+# summarize results of match
+if Agames > Bgames:
+    print "A wins match"
+    Amatches +=1
+if Bgames > Agames:
+    print "B wins match"
+    Bmatches +=1
+
+
+print "Matches: A=", Amatches, "B=", Bmatches

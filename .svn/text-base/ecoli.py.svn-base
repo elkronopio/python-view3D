@@ -1,0 +1,58 @@
+## Simulation of running E. Coli
+## No tumbling, no positional diffusion.
+## Rough draft - 11/12/02
+## Parameters approximated from Berg's Jan. 00 Physics Today Article
+from visual import *
+from random import *
+scene.autoscale = 1
+scene.background = (.5,.7,.5)
+
+## make the bug
+## length scale: microns. Time scale: real time.
+ecoli = frame(axis=(0,1,0))
+cylinder(frame=ecoli, pos=(-1,0,0), axis=(2,0,0), radius = 0.35)
+sphere(frame=ecoli, pos=(1,0,0), radius=0.35)
+sphere(frame=ecoli, pos=(-1,0,0), radius=0.35)
+track = curve(color=color.yellow)
+##flag1=curve(frame=ecoli, radius=0.04)
+##flag2=curve(frame=ecoli, radius=0.04)
+##for i in range(100):
+##    flag1.append(pos=(-.5-i/20.,0.3*sin(i/10.),0.3*cos(i/10.)))
+##    flag2.append(pos=(-.7-i/20.,0.3*sin(i/10.+1),0.3*cos(i/10.+1)))
+
+ecoli.axis = vector(0,1,0)
+ecoli.speed = 4      ## microns per second - slow E. Coli - should be more like 20 micron /sec
+                     ## Equivalently, the cell is drawn 5 times too large.
+framerate = 40
+dt = 1./framerate
+omega = 25
+deltaangle = 0.25   ## Angular diffusion constant in square radians per second
+stepangle = sqrt(2*deltaangle*dt)
+arrowa = arrow(color=color.yellow, axis=(0,12,0), shaftwidth=0.3)
+arrowb = arrow(color=color.blue, axis=(12,0,0), shaftwidth=0.3)
+arrowc = arrow(color=color.blue, axis=(0,0,12), shaftwidth=0.3)
+arrowd = arrow(color=color.red, axis=(0,-12,0), shaftwidth=0.3)
+
+t = 0
+clock = label(pos=(0,0,0),text="Time: " + str(t),height=12, opacity = 0.4,
+              yoffset = -60, line=0)
+while 1:
+    rate(framerate)
+    t += dt
+    ecoli.pos += ecoli.axis * dt * ecoli.speed
+    ecoli.rotate(axis=ecoli.axis, angle=dt * omega)
+    if (ecoli.axis.y < 0):
+        track.append(pos=ecoli.pos, color=color.red)
+    else:
+        track.append(pos=ecoli.pos, color=color.yellow)
+    ## assume that (1,0,0) will never be exactly equal to ecoli.dir
+    rotaxis = cross(vector(1,0,0),ecoli.axis)
+    rotaxis = norm(rotaxis)  ## unit vector perpendicular to ecoli.dir
+    ## pick a random axis to rotate ecoli.axis about, perpendicular to dir
+    rotaxis = rotate(rotaxis, angle = 2. * 3.1415926535 * random(), axis=ecoli.axis)
+    clock.text="Time: " + str(t)
+    while (len(clock.text)<12):
+        clock.text += "0"
+    ecoli.rotate(angle=stepangle, axis=rotaxis)
+    
+

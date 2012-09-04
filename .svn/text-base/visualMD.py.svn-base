@@ -1,0 +1,172 @@
+from visual import *
+import time
+import sys
+
+
+def Lboundary(x, lx):
+    res=x
+    while x>=0.5*lx:
+        x-=lx
+    while x<-0.5*lx:
+        x+=lx
+    return x
+
+def boundary(pos, lx,ly,lz):
+    pos[0]=Lboundary(pos[0],lx)
+    pos[1]=Lboundary(pos[1],ly)
+    #pos[2]=Lboundary(pos[2],lz)
+    return pos
+
+def showSystem(xpos,diameter):
+    sistema=[]
+    scene.background = color.gray(0.7)
+    for i in range(len(diameter)):
+        ball = sphere (pos=xpos[i], radius=diameter[i], color = color.red ,material=materials.rough)
+        sistema.append(ball)
+    return sistema
+
+def updateSystem(xpos, sistema):
+    sistema2=[]
+    i=0
+    for ball in sistema:
+        ball.pos=xpos[i]
+        sistema2.append(ball)
+        i+=1
+    return sistema2
+
+def printBox(lbox,rad):
+    lx=lbox[0]
+    ly=lbox[1]
+    lz=lbox[2]
+    scene2 = display(title='set Q',width=600, height=600, center=(0,0,0), background=(0.95,0.95,0.95))
+    L0 = scene.lights[0]
+    L0.color = 0.9*vector(L0.color)
+    scene2.lights = [L0]
+    d = L0.direction
+    L1 = distant_light(direction=(lx,0,0), color=L0.color)
+    rod = cylinder(pos=(-0.5*lx,-0.5*ly,-0.5*lz),axis=(lx,0,0), radius=rad, color = color.black)
+    rod = cylinder(pos=(-0.5*lx,-0.5*ly,-0.5*lz),axis=(0,ly,0), radius=rad, color = color.black)
+    rod = cylinder(pos=(-0.5*lx,-0.5*ly,-0.5*lz),axis=(0,0,lz), radius=rad, color = color.black)
+    
+    rod = cylinder(pos=(0.5*lx,-0.5*ly,-0.5*lz),axis=(0,ly,0), radius=rad, color = color.black)
+    rod = cylinder(pos=(0.5*lx,-0.5*ly,-0.5*lz),axis=(0,0,lz), radius=rad, color = color.black)
+    rod = cylinder(pos=(-0.5*lx,0.5*ly,-0.5*lz),axis=(0,0,lz), radius=rad, color = color.black)
+    rod = cylinder(pos=(-0.5*lx,0.5*ly,-0.5*lz),axis=(lx,0,0), radius=rad, color = color.black)
+    
+    rod = cylinder(pos=(-0.5*lx,-0.5*ly,0.5*lz),axis=(lx,0,0), radius=rad, color = color.black)
+    rod = cylinder(pos=(-0.5*lx,-0.5*ly,0.5*lz),axis=(0,ly,0), radius=rad, color = color.black)
+    
+    rod = cylinder(pos=(0.5*lx,0.5*ly,-0.5*lz),axis=(0,0,lz), radius=rad, color = color.black)
+    rod = cylinder(pos=(0.5*lx,-0.5*ly,0.5*lz),axis=(0,ly,0), radius=rad, color = color.black)
+    rod = cylinder(pos=(-0.5*lx,0.5*ly,0.5*lz),axis=(lx,0,0), radius=rad, color = color.black)
+
+def animate(name, tstep):
+    f = open(name,'r')
+    tnext=tstep
+    tx = f.readline()
+    tx = tx.replace('\n','')
+    val = tx.split(' ')
+    aux=[]
+    for v in val:
+        if v!='':
+            aux.append(v)
+    npart=int(aux[0])
+    tx = f.readline()
+    tx = tx.replace('\n','')
+    val = tx.split(' ')
+    aux=[]
+    for v in val:
+        if v!='':
+            aux.append(v)
+    lx=float(aux[0])
+    ly=float(aux[1])
+    lz=float(aux[2])
+    nacc=float(aux[3])
+    printBox([lx,ly,lz],0.1)
+
+    pos=[]
+    diameter=[]
+    
+    for i in range(npart):
+        tx = f.readline()
+        tx = tx.replace('\n','')
+        val = tx.split(' ')
+        aux=[]
+        for v in val:
+            if v!='':
+                aux.append(v)
+    
+        xpos=boundary([float(aux[0]),float(aux[1]),float(aux[2])], lx,ly,lz)
+        xpos=[float(aux[0]),float(aux[1]),float(aux[2])]
+        pos.append(xpos)
+        try:
+            diameter.append(float(aux[3]))
+        except:
+            diameter.append(1.0)
+    
+    sistema = showSystem(pos,diameter)
+    
+    tx =f.readline()
+            
+    while tx!='':
+        try:
+            tx = tx.replace('\n','')
+            val = tx.split(' ')
+            aux=[]
+            for v in val:
+                if v!='':
+                    aux.append(v)
+            npart=int(aux[0])
+            tx = f.readline()
+            tx = tx.replace('\n','')
+            val = tx.split(' ')
+            aux=[]
+            for v in  val:
+                if v!='':
+                    aux.append(v)
+            lx=float(aux[0])
+            ly=float(aux[1])
+            lz=float(aux[2])
+            nacc=float(aux[3])
+            pos=[]
+            diameter=[]
+            if nacc>=tnext:
+                doit=True
+                tnext+=tstep
+            else:
+                doit=False
+            for i in range(npart):
+                tx = f.readline()
+                tx = tx.replace('\n','')
+                if doit:
+                    val = tx.split(' ')
+                    aux=[]
+                    for v in val:
+                        if v!='':
+                            aux.append(v)
+                
+                    xpos=boundary([float(aux[0]),float(aux[1]),float(aux[2])], lx,ly,lz)
+                    pos.append(xpos)
+                    try:
+                        diameter.append(float(aux[3]))
+                    except:
+                        diameter.append(1.0)
+            
+            doit=True
+            if doit:
+                updateSystem(pos, sistema)
+            #time.sleep(0.05)
+            tx =f.readline()
+        except:
+            print 'FIN ',sys.exc_info()[0]
+            tx=''
+#
+#name ='/home/jonk/remote/cfpfsc/jcfernandez/simulaciones/MDDip/confinado/polydisperse/u100/L0.2/representacion.dat'
+#name='//home/jonk/remote/cfpfsc/jcfernandez/simulaciones/MDDip/confinado/monodisperse/L1.0/representacion.dat'
+#name='/home/jonk/projects/otro/representacion.dat'
+name='/home/jonk/projects/MDDipFlow/representacion.dat'
+#name='/home/jonk/projects/sizes/representacion.dat'
+#name=sys.argv[1]
+tstep=1.0
+animate(name, tstep)
+#printBox([10.0,10.0,10.0],1.0)
